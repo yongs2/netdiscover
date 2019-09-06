@@ -151,7 +151,7 @@ func (d *genericDiscoverer) PublicIPv6() (net.IP, error) {
 }
 
 func defaultPublicIPv4() (net.IP, error) {
-	resp, err := http.Get("http://ipv4.jsonip.io")
+	resp, err := http.Get("https://api.ipify.org?format=json")
 	if err != nil {
 		return nil, err
 	}
@@ -160,7 +160,7 @@ func defaultPublicIPv4() (net.IP, error) {
 	dec := json.NewDecoder(resp.Body)
 
 	type response struct {
-		Address string `json:"address"`
+		Address string `json:"ip"`
 	}
 	data := new(response)
 
@@ -178,7 +178,7 @@ func defaultPublicIPv4() (net.IP, error) {
 }
 
 func defaultPublicIPv6() (net.IP, error) {
-	resp, err := http.Get("http://ipv6.jsonip.io")
+	resp, err := http.Get("https://api6.ipify.org?format=json")
 	if err != nil {
 		return nil, err
 	}
@@ -187,7 +187,7 @@ func defaultPublicIPv6() (net.IP, error) {
 	dec := json.NewDecoder(resp.Body)
 
 	type response struct {
-		Address string `json:"address"`
+		Address string `json:"ip"`
 	}
 	data := new(response)
 

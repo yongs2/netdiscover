@@ -27,7 +27,7 @@ changelog:
 
 dockers:
   - image_templates:
-    - "cycoresystems/netdiscover:{{ .Tag }}"
-    - "cycoresystems/netdiscover:v{{ .Major }}"
-    - "cycoresystems/netdiscover:v{{ .Major }}.{{ .Minor }}"
-    - "cycoresystems/netdiscover:latest"
+    - "yongs2/netdiscover:{{ .Tag }}"
+    - "yongs2/netdiscover:v{{ .Major }}"
+    - "yongs2/netdiscover:v{{ .Major }}.{{ .Minor }}"
+    - "yongs2/netdiscover:latest"

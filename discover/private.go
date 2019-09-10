@@ -7,22 +7,22 @@ import (
 )
 
 const (
-	doPublicIPv4URL = "http://192.168.0.210?format=json"
-	doPublicIPv6URL = "http://192.168.0.210?format=json"
+	privatePublicIPv4URL = "http://192.168.0.210?format=json"
+	privatePublicIPv6URL = "http://192.168.0.210?format=json"
 )
 
 // NewDigitalOceanDiscoverer returns a new Digital Ocean network discoverer
 func NewPrivateDiscoverer() Discoverer {
 	return NewDiscoverer(
-		PublicIPv4DiscovererOption(doPublicIPv4),
-		PublicIPv6DiscovererOption(doPublicIPv6),
+		PublicIPv4DiscovererOption(privatePublicIPv4),
+		PublicIPv6DiscovererOption(privatePublicIPv6),
 	)
 }
 
-func doPublicIPv4() (net.IP, error) {
-	return StandardIPFromHTTP(doPublicIPv4URL, nil)
+func privatePublicIPv4() (net.IP, error) {
+	return StandardIPFromHTTP(privatePublicIPv4URL, nil)
 }
 
-func doPublicIPv6() (net.IP, error) {
-	return StandardIPFromHTTP(doPublicIPv6URL, nil)
+func privatePublicIPv6() (net.IP, error) {
+	return StandardIPFromHTTP(privatePublicIPv6URL, nil)
 }

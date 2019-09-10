@@ -86,3 +86,30 @@ func StandardHostnameFromHTTP(url string, headers map[string]string) (string, er
 
 	return string(body), nil
 }
+
+func JsonIPFromHTTP(url string, headers map[string]string) (net.IP, error) {
+	resp, err := http.Get(url)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close() // nolint: errcheck
+
+	dec := json.NewDecoder(resp.Body)
+
+	type response struct {
+		Address string `json:"ip"`
+	}
+	data := new(response)
+
+	err = dec.Decode(data)
+	if err != nil {
+		return nil, fmt.Errorf("failed to parse response: %v", err)
+	}
+
+	ip := net.ParseIP(data.Address)
+	if ip == nil {
+		return nil, fmt.Errorf("failed to parse address: %s", data.Address)
+	}
+
+	return ip, nil
+}

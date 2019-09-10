@@ -20,9 +20,9 @@ func NewPrivateDiscoverer() Discoverer {
 }
 
 func privatePublicIPv4() (net.IP, error) {
-	return StandardIPFromHTTP(privatePublicIPv4URL, nil)
+	return JsonIPFromHTTP(privatePublicIPv4URL, nil)
 }
 
 func privatePublicIPv6() (net.IP, error) {
-	return StandardIPFromHTTP(privatePublicIPv6URL, nil)
+	return JsonIPFromHTTP(privatePublicIPv6URL, nil)
 }
